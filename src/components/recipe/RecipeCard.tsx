@@ -47,6 +47,7 @@ export const RecipeCard = ({ recipe, onPress, onFavoritePress, isFavorite = fals
               name={isFavorite ? 'heart' : 'heart-outline'}
               size={ICON_SIZE.md}
               color={isFavorite ? COLORS.primary : COLORS.text.primary}
+              allowFontScaling={false}
             />
           </TouchableOpacity>
         )}

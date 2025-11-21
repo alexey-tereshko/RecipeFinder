@@ -24,6 +24,7 @@ export const FavoriteButton = ({ isFavorite, onPress }: FavoriteButtonProps) => 
             size={ICON_SIZE.md} 
             color={COLORS.white} 
             style={styles.icon}
+            allowFontScaling={false}
           />
           <Text style={styles.text}>
             {isFavorite ? 'Remove from Favourites' : 'Add to Favourites'}

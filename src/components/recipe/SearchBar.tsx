@@ -17,7 +17,7 @@ export const SearchBar = ({
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <Ionicons name="search" size={ICON_SIZE.md} color={COLORS.text.placeholder} style={styles.icon} />
+        <Ionicons name="search" size={ICON_SIZE.md} color={COLORS.text.placeholder} style={styles.icon} allowFontScaling={false} />
         <TextInput
           style={styles.input}
           value={value}

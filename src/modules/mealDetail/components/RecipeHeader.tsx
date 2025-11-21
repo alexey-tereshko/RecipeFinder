@@ -39,6 +39,7 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
           name={i <= rating ? 'star' : 'star-outline'}
           size={16}
           color={COLORS.primary}
+          allowFontScaling={false}
         />,
       );
     }
@@ -62,6 +63,7 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
             name="arrow-back"
             size={ICON_SIZE.md}
             color={COLORS.white}
+            allowFontScaling={false}
           />
         </TouchableOpacity>
       </View>

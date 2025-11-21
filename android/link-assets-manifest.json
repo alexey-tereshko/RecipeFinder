@@ -8,6 +8,10 @@
     {
       "path": "src/assets/fonts/Epilogue-VariableFont_wght.ttf",
       "sha1": "4f2dd055a21205af1c7553dd4bb7a9dd3088d976"
+    },
+    {
+      "path": "node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+      "sha1": "86e07c3d974eb09099e6e5a9b3b8310303cf0feb"
     }
   ]
 }

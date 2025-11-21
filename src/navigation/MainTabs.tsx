@@ -15,11 +15,11 @@ import {
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 const HomeIcon = ({ color, size }: { color: string; size: number }) => (
-  <Ionicons name="home" size={size} color={color} />
+  <Ionicons name="home" size={size} color={color} allowFontScaling={false} />
 );
 
 const FavoritesIcon = ({ color, size }: { color: string; size: number }) => (
-  <Ionicons name="heart" size={size} color={color} />
+  <Ionicons name="heart" size={size} color={color} allowFontScaling={false} />
 );
 
 export const MainTabs = () => {
