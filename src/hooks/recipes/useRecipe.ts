@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { apiClient } from '@/api';
+import { recipeCacheService } from '@/services/realm';
 import type { Recipe } from '@/types/recipe';
 
 export const useRecipe = (id: number) => {
@@ -11,10 +12,23 @@ export const useRecipe = (id: number) => {
     try {
       setIsLoading(true);
       setError(null);
+      
+      const cachedRecipe = await recipeCacheService.getRecipe(id);
+      if (cachedRecipe) {
+        setRecipe(cachedRecipe);
+        setIsLoading(false);
+      }
+
       const data = await apiClient.fetchRecipeById(id);
       setRecipe(data);
+      await recipeCacheService.saveRecipe(data);
     } catch (err) {
-      setError(err instanceof Error ? err : new Error('Failed to fetch recipe'));
+      const cachedRecipe = await recipeCacheService.getRecipe(id);
+      if (cachedRecipe) {
+        setRecipe(cachedRecipe);
+      } else {
+        setError(err instanceof Error ? err : new Error('Failed to fetch recipe'));
+      }
     } finally {
       setIsLoading(false);
     }

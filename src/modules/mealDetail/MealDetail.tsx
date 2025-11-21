@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { useRecipe } from '@/hooks/recipes';
@@ -19,13 +19,13 @@ export const MealDetail = ({ route }: Props) => {
   const { recipe, isLoading, error, refetch } = useRecipe(recipeId);
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
-  const handleFavoriteToggle = () => {
+  const handleFavoriteToggle = async () => {
     if (!recipe) return;
     
     if (isFavorite(recipe.id)) {
-      removeFavorite(recipe.id);
+      await removeFavorite(recipe.id);
     } else {
-      addFavorite({ id: recipe.id, name: recipe.name, image: recipe.image });
+      await addFavorite({ id: recipe.id, name: recipe.name, image: recipe.image });
     }
   };
 
