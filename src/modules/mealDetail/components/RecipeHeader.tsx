@@ -58,7 +58,7 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
           borderRadius={0}
         />
         <TouchableOpacity
-          style={[styles.backButton, { top: insets.top }]}
+          style={[styles.backButton, { top: SPACING.sm + insets.top }]}
           onPress={() => navigation.goBack()}
         >
           <Ionicons
