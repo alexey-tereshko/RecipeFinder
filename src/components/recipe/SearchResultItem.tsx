@@ -22,7 +22,7 @@ interface SearchResultItemProps {
   isFavorite?: boolean;
 }
 
-export const SearchResultItem = ({
+export const SearchResultItem = React.memo(({
   recipe,
   onPress,
   onFavoritePress,
@@ -78,7 +78,9 @@ export const SearchResultItem = ({
       )}
     </TouchableOpacity>
   );
-};
+});
+
+SearchResultItem.displayName = 'SearchResultItem';
 
 const styles = StyleSheet.create({
   container: {

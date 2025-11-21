@@ -20,11 +20,27 @@ const buildUrl = (
 };
 
 const fetchJson = async <T>(url: string): Promise<T> => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`API error: ${response.statusText}`);
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error('Resource not found');
+      }
+      if (response.status >= 500) {
+        throw new Error('Server error. Please try again later.');
+      }
+      throw new Error(`API error: ${response.statusText}`);
+    }
+    return response.json();
+  } catch (err) {
+    if (err instanceof TypeError && err.message.includes('Network')) {
+      throw new Error('No internet connection. Please check your network.');
+    }
+    if (err instanceof Error) {
+      throw err;
+    }
+    throw new Error('An unexpected error occurred');
   }
-  return response.json();
 };
 
 export const createApiClient = (): ApiClient => ({

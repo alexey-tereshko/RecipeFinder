@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { apiClient } from '@/api/apiClient';
 import type { RecipeListItem, RecipesResponse } from '@/types/recipe';
 
@@ -65,6 +65,14 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
     },
     [performSearch]
   );
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   return {
     recipes,

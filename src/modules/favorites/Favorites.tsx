@@ -5,7 +5,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { useFavorites } from '@/hooks/favorites/useFavorites';
 import { FavoritesList } from './components/FavoritesList';
-import { ErrorView } from '@/modules/home/components/ErrorView';
+import { EmptyState } from '@/components/common/EmptyState';
 import { LoadingIndicator } from '@/modules/home/components/LoadingIndicator';
 import { COLORS } from '@/constants/uiConstants';
 
@@ -35,8 +35,10 @@ export const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <ErrorView 
-        message="No favorites yet. Add recipes to favorites to see them here." 
+      <EmptyState
+        icon="heart-outline"
+        title="No favorites yet"
+        message="Add recipes to favorites to see them here"
       />
     );
   }

@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { RecipeCard } from '@/components/recipe/RecipeCard';
 import { SearchResultItem } from '@/components/recipe/SearchResultItem';
+import { EmptyState } from '@/components/common/EmptyState';
 import { PaginationControls } from './PaginationControls';
 import type { RecipeListItem } from '@/types/recipe';
 import { SPACING } from '@/constants/uiConstants';
@@ -38,6 +39,25 @@ export const RecipesList = ({
     flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, [currentPage]);
 
+  const renderEmptyComponent = () => {
+    if (isSearchMode) {
+      return (
+        <EmptyState
+          icon="search-outline"
+          title="No recipes found"
+          message="Try searching with different keywords"
+        />
+      );
+    }
+    return (
+      <EmptyState
+        icon="restaurant-outline"
+        title="No recipes available"
+        message="Check your internet connection and try again"
+      />
+    );
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -64,9 +84,11 @@ export const RecipesList = ({
             />
           )
         }
+        ListEmptyComponent={recipes.length === 0 ? renderEmptyComponent : null}
         contentContainerStyle={[
           isSearchMode ? styles.searchContent : styles.content,
           { paddingBottom: SPACING.md },
+          recipes.length === 0 && styles.emptyContent,
         ]}
         showsVerticalScrollIndicator={false}
         columnWrapperStyle={numColumns > 1 ? styles.row : undefined}
@@ -96,6 +118,9 @@ const styles = StyleSheet.create({
   },
   row: {
     justifyContent: 'space-between',
+  },
+  emptyContent: {
+    flexGrow: 1,
   },
 });
 

@@ -8,7 +8,6 @@ import {
   BORDER_RADIUS,
   FONT_SIZE,
   FONT_FAMILY,
-  LINE_HEIGHT,
   ICON_SIZE,
 } from '@/constants/uiConstants';
 

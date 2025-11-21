@@ -30,7 +30,7 @@ interface RecipeCardProps {
   width?: number;
 }
 
-export const RecipeCard = ({
+export const RecipeCard = React.memo(({
   recipe,
   onPress,
   onFavoritePress,
@@ -99,7 +99,9 @@ export const RecipeCard = ({
       </View>
     </TouchableOpacity>
   );
-};
+});
+
+RecipeCard.displayName = 'RecipeCard';
 
 const styles = StyleSheet.create({
   card: {
