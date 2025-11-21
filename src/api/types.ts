@@ -1,4 +1,4 @@
-import type { Recipe, RecipeListItem, RecipesResponse } from '@/types/recipe';
+import type { Recipe, RecipesResponse } from '@/types/recipe';
 
 export interface FetchRecipesParams {
   limit?: number;

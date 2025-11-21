@@ -1,8 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import type { RouteProp } from '@react-navigation/native';
 import type { RootStackParamList } from '@/types/navigation';
 import { useRecipe } from '@/hooks/recipes/useRecipe';
@@ -13,13 +11,7 @@ import { RecipeHeader } from './components/RecipeHeader';
 import { IngredientsList } from './components/IngredientsList';
 import { InstructionsList } from './components/InstructionsList';
 import { FavoriteButton } from './components/FavoriteButton';
-import {
-  COLORS,
-  SPACING,
-  BORDER_RADIUS,
-  ICON_SIZE,
-  SHADOW,
-} from '@/constants/uiConstants';
+import { COLORS } from '@/constants/uiConstants';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'MealDetail'>;
@@ -27,7 +19,6 @@ type Props = {
 
 export const MealDetail = ({ route }: Props) => {
   const { recipeId } = route.params;
-  const navigation = useNavigation();
   const { recipe, isLoading, error, refetch } = useRecipe(recipeId);
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
   const insets = useSafeAreaInsets();

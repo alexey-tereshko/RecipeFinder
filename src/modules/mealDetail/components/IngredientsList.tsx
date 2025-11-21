@@ -13,7 +13,7 @@ export const IngredientsList = ({ ingredients }: IngredientsListProps) => {
       <FlatList
         data={ingredients}
         keyExtractor={(item, index) => `${item}-${index}`}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <View style={styles.item}>
             <Text style={styles.bullet}>•</Text>
             <Text style={styles.text}>{item}</Text>

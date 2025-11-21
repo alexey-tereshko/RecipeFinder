@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { apiClient } from '@/api/apiClient';
 import { recipeCacheService } from '@/services/realm/recipeCacheService';
 import type { Recipe } from '@/types/recipe';
@@ -8,7 +8,7 @@ export const useRecipe = (id: number) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchRecipe = async () => {
+  const fetchRecipe = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -32,13 +32,13 @@ export const useRecipe = (id: number) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (id) {
       fetchRecipe();
     }
-  }, [id]);
+  }, [id, fetchRecipe]);
 
   return {
     recipe,

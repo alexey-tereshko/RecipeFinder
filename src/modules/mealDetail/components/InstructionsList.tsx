@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, BORDER_RADIUS } from '@/constants/uiConstants';
+import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT } from '@/constants/uiConstants';
 
 interface InstructionsListProps {
   instructions: string[];
