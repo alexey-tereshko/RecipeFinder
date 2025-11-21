@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT } from '../../../constants/uiConstants';
 
 interface InstructionsListProps {
   instructions: string[];
@@ -28,37 +29,37 @@ export const InstructionsList = ({ instructions }: InstructionsListProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: SPACING.lg,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 12,
+    fontSize: FONT_SIZE.lg,
+    fontWeight: FONT_WEIGHT.bold,
+    color: COLORS.text.primary,
+    marginBottom: SPACING.md,
   },
   item: {
     flexDirection: 'row',
-    marginBottom: 16,
+    marginBottom: SPACING.lg,
     alignItems: 'flex-start',
   },
   stepNumber: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#007AFF',
+    backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    marginRight: SPACING.md,
   },
   stepText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontSize: FONT_SIZE.md,
+    fontWeight: FONT_WEIGHT.bold,
+    color: COLORS.white,
   },
   text: {
     flex: 1,
-    fontSize: 16,
-    color: '#333',
+    fontSize: FONT_SIZE.md,
+    color: COLORS.text.primary,
     lineHeight: 24,
   },
 });

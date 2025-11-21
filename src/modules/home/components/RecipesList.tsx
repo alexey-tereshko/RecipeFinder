@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { RecipeCard } from '../../../components/recipe';
 import type { RecipeListItem } from '../../../types/recipe';
+import { SPACING } from '../../../constants/uiConstants';
 
 interface RecipesListProps {
   recipes: RecipeListItem[];
@@ -24,7 +25,7 @@ export const RecipesList = ({ recipes, onRecipePress }: RecipesListProps) => {
 
 const styles = StyleSheet.create({
   content: {
-    padding: 16,
+    padding: SPACING.lg,
   },
 });
 

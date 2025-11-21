@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import { RecipeImage } from './RecipeImage';
 import type { RecipeListItem } from '../../types/recipe';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, SHADOW, ACTIVE_OPACITY } from '../../constants/uiConstants';
 
 interface RecipeCardProps {
   recipe: RecipeListItem;
@@ -13,9 +14,9 @@ export const RecipeCard = ({ recipe, onPress }: RecipeCardProps) => {
     <TouchableOpacity
       style={styles.card}
       onPress={() => onPress(recipe.id)}
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
     >
-      <RecipeImage uri={recipe.image} width={80} height={80} borderRadius={8} />
+      <RecipeImage uri={recipe.image} width={80} height={80} borderRadius={BORDER_RADIUS.md} />
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={2}>
           {recipe.name}
@@ -28,25 +29,21 @@ export const RecipeCard = ({ recipe, onPress }: RecipeCardProps) => {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: COLORS.background.primary,
+    borderRadius: BORDER_RADIUS.md,
+    padding: SPACING.md,
+    marginBottom: SPACING.md,
+    ...SHADOW.small,
   },
   content: {
     flex: 1,
-    marginLeft: 12,
+    marginLeft: SPACING.md,
     justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
+    fontSize: FONT_SIZE.md,
+    fontWeight: FONT_WEIGHT.semibold,
+    color: COLORS.text.primary,
   },
 });
 

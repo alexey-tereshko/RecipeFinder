@@ -8,6 +8,7 @@ import { RecipesList } from './components/RecipesList';
 import { LoadingIndicator } from './components/LoadingIndicator';
 import { ErrorView } from './components/ErrorView';
 import { useHomeRecipes } from './hooks/useHomeRecipes';
+import { COLORS } from '../../constants/uiConstants';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -36,7 +37,7 @@ export const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: COLORS.background.secondary,
   },
 });
 

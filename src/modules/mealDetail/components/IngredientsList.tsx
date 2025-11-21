@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT } from '../../../constants/uiConstants';
 
 interface IngredientsListProps {
   ingredients: string[];
@@ -26,28 +27,28 @@ export const IngredientsList = ({ ingredients }: IngredientsListProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: SPACING.lg,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 12,
+    fontSize: FONT_SIZE.lg,
+    fontWeight: FONT_WEIGHT.bold,
+    color: COLORS.text.primary,
+    marginBottom: SPACING.md,
   },
   item: {
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: SPACING.sm,
     alignItems: 'flex-start',
   },
   bullet: {
-    fontSize: 16,
-    color: '#666',
-    marginRight: 8,
+    fontSize: FONT_SIZE.md,
+    color: COLORS.text.secondary,
+    marginRight: SPACING.sm,
   },
   text: {
     flex: 1,
-    fontSize: 16,
-    color: '#333',
+    fontSize: FONT_SIZE.md,
+    color: COLORS.text.primary,
     lineHeight: 24,
   },
 });

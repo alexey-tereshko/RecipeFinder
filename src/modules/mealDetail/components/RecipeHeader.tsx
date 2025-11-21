@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { RecipeImage } from '../../../components/recipe';
 import type { Recipe } from '../../../types/recipe';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT } from '../../../constants/uiConstants';
 
 interface RecipeHeaderProps {
   recipe: Recipe;
@@ -18,7 +19,7 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
         uri={recipe.image} 
         width={imageWidth} 
         height={imageHeight} 
-        borderRadius={12} 
+        borderRadius={BORDER_RADIUS.lg} 
       />
       <View style={styles.info}>
         <Text style={styles.title}>{recipe.name}</Text>
@@ -32,20 +33,20 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: SPACING.lg,
   },
   info: {
-    marginTop: 16,
+    marginTop: SPACING.lg,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 8,
+    fontSize: FONT_SIZE.xl,
+    fontWeight: FONT_WEIGHT.bold,
+    color: COLORS.text.primary,
+    marginBottom: SPACING.sm,
   },
   category: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: FONT_SIZE.md,
+    color: COLORS.text.secondary,
     textTransform: 'capitalize',
   },
 });

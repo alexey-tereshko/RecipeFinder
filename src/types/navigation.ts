@@ -1,5 +1,4 @@
 import type { NavigatorScreenParams } from '@react-navigation/native';
-import type { Recipe } from './recipe';
 
 export type RootStackParamList = {
   MainTabs: NavigatorScreenParams<MainTabParamList>;
@@ -16,4 +15,3 @@ declare global {
     interface RootParamList extends RootStackParamList {}
   }
 }
-

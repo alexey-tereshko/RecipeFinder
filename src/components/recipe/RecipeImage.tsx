@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
+import { COLORS } from '../../constants/uiConstants';
 
 interface RecipeImageProps {
   uri: string;
@@ -28,7 +29,7 @@ export const RecipeImage = ({
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: COLORS.background.image,
   },
   image: {
     width: '100%',

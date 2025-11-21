@@ -10,6 +10,7 @@ import { RecipeHeader } from './components/RecipeHeader';
 import { IngredientsList } from './components/IngredientsList';
 import { InstructionsList } from './components/InstructionsList';
 import { FavoriteButton } from './components/FavoriteButton';
+import { COLORS } from '../../constants/uiConstants';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>;
 
@@ -56,7 +57,7 @@ export const MealDetail = ({ route }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.background.primary,
   },
 });
 

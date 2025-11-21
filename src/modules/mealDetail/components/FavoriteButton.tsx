@@ -1,5 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, ICON_SIZE, ACTIVE_OPACITY } from '../../../constants/uiConstants';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
@@ -11,37 +13,52 @@ export const FavoriteButton = ({ isFavorite, onPress }: FavoriteButtonProps) => 
     <TouchableOpacity
       style={[styles.button, isFavorite && styles.buttonActive]}
       onPress={onPress}
-      activeOpacity={0.7}
+      activeOpacity={ACTIVE_OPACITY}
     >
-      <Text style={[styles.text, isFavorite && styles.textActive]}>
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </Text>
+      <View style={styles.content}>
+        <Ionicons 
+          name={isFavorite ? 'heart' : 'heart-outline'} 
+          size={ICON_SIZE.md} 
+          color={isFavorite ? COLORS.white : COLORS.primary} 
+          style={styles.icon}
+        />
+        <Text style={[styles.text, isFavorite && styles.textActive]}>
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
     borderWidth: 2,
-    borderColor: '#007AFF',
-    borderRadius: 8,
+    borderColor: COLORS.primary,
+    borderRadius: BORDER_RADIUS.md,
     paddingVertical: 14,
-    paddingHorizontal: 24,
+    paddingHorizontal: SPACING.xxl,
     alignItems: 'center',
-    marginHorizontal: 16,
-    marginVertical: 16,
+    marginHorizontal: SPACING.lg,
+    marginVertical: SPACING.lg,
   },
   buttonActive: {
-    backgroundColor: '#007AFF',
+    backgroundColor: COLORS.primary,
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: SPACING.sm,
   },
   text: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#007AFF',
+    fontSize: FONT_SIZE.md,
+    fontWeight: FONT_WEIGHT.semibold,
+    color: COLORS.primary,
   },
   textActive: {
-    color: '#fff',
+    color: COLORS.white,
   },
 });
 

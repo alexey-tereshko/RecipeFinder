@@ -6,6 +6,7 @@ import type { RootStackParamList } from '../../types/navigation';
 import { useFavorites } from '../../hooks/favorites';
 import { RecipesList } from '../home/components/RecipesList';
 import { ErrorView } from '../home/components/ErrorView';
+import { COLORS } from '../../constants/uiConstants';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -35,7 +36,7 @@ export const Favorites = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: COLORS.background.secondary,
   },
 });
 
