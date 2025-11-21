@@ -2,27 +2,42 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE, ACTIVE_OPACITY } from '@/constants/uiConstants';
+import {
+  COLORS,
+  SPACING,
+  BORDER_RADIUS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  FONT_FAMILY,
+  LINE_HEIGHT,
+  ICON_SIZE,
+  ACTIVE_OPACITY,
+} from '@/constants/uiConstants';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
   onPress: () => void;
 }
 
-export const FavoriteButton = ({ isFavorite, onPress }: FavoriteButtonProps) => {
+export const FavoriteButton = ({
+  isFavorite,
+  onPress,
+}: FavoriteButtonProps) => {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.container, { paddingBottom: SPACING.xl + insets.bottom }]}>
+    <View
+      style={[styles.container, { paddingBottom: SPACING.xl + insets.bottom }]}
+    >
       <TouchableOpacity
         style={styles.button}
         onPress={onPress}
         activeOpacity={ACTIVE_OPACITY}
       >
         <View style={styles.content}>
-          <Ionicons 
-            name="heart-outline" 
-            size={ICON_SIZE.md} 
-            color={COLORS.white} 
+          <Ionicons
+            name={isFavorite ? 'heart' : 'heart-outline'}
+            size={ICON_SIZE.md}
+            color={COLORS.black}
             style={styles.icon}
             allowFontScaling={false}
           />
@@ -64,4 +79,3 @@ const styles = StyleSheet.create({
     lineHeight: LINE_HEIGHT.lg,
   },
 });
-
