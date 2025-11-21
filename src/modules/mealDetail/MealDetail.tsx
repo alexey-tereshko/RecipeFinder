@@ -23,11 +23,15 @@ export const MealDetail = ({ route }: Props) => {
 
   const handleFavoriteToggle = async () => {
     if (!recipe) return;
-    
+
     if (isFavorite(recipe.id)) {
       await removeFavorite(recipe.id);
     } else {
-      await addFavorite({ id: recipe.id, name: recipe.name, image: recipe.image });
+      await addFavorite({
+        id: recipe.id,
+        name: recipe.name,
+        image: recipe.image,
+      });
     }
   };
 
@@ -36,13 +40,20 @@ export const MealDetail = ({ route }: Props) => {
   }
 
   if (error || !recipe) {
-    return <ErrorView message={error?.message || 'Recipe not found'} onRetry={refetch} />;
+    return (
+      <ErrorView
+        message={error?.message || 'Recipe not found'}
+        onRetry={refetch}
+      />
+    );
   }
 
   return (
-    <ScrollView 
-      style={styles.container} 
-      contentContainerStyle={{ paddingBottom: insets.bottom }}
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{
+        paddingBottom: insets.bottom,
+      }}
       showsVerticalScrollIndicator={false}
     >
       <RecipeHeader recipe={recipe} />
@@ -52,9 +63,9 @@ export const MealDetail = ({ route }: Props) => {
       {recipe.instructions && recipe.instructions.length > 0 && (
         <InstructionsList instructions={recipe.instructions} />
       )}
-      <FavoriteButton 
-        isFavorite={isFavorite(recipe.id)} 
-        onPress={handleFavoriteToggle} 
+      <FavoriteButton
+        isFavorite={isFavorite(recipe.id)}
+        onPress={handleFavoriteToggle}
       />
     </ScrollView>
   );
@@ -66,4 +77,3 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background.primary,
   },
 });
-

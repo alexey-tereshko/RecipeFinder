@@ -11,7 +11,10 @@ interface ErrorViewProps {
 export const ErrorView = ({ message, onRetry }: ErrorViewProps) => {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.container, { paddingBottom: SPACING.xxl + insets.bottom }]}>
+    <View style={[styles.container, { 
+      paddingTop: insets.top,
+      paddingBottom: SPACING.xxl + insets.bottom 
+    }]}>
       <Text style={styles.message}>{message}</Text>
       {onRetry && (
         <TouchableOpacity style={styles.button} onPress={onRetry}>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RecipeImage } from '@/components/recipe/RecipeImage';
 import type { Recipe } from '@/types/recipe';
@@ -28,6 +29,7 @@ interface RecipeHeaderProps {
 export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const imageHeight = width * 0.6;
 
   const renderStars = (rating: number = 0) => {
@@ -56,7 +58,7 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
           borderRadius={0}
         />
         <TouchableOpacity
-          style={styles.backButton}
+          style={[styles.backButton, { top: SPACING.xl + insets.top }]}
           onPress={() => navigation.goBack()}
         >
           <Ionicons
@@ -134,7 +136,6 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 50,
     left: SPACING.lg,
     width: 40,
     height: 40,
@@ -179,7 +180,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.xs,
     fontWeight: FONT_WEIGHT.medium,
-    color: COLORS.primary,
+    color: COLORS.white,
   },
   description: {
     fontFamily: FONT_FAMILY.regular,

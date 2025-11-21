@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY } from '@/constants/uiConstants';
 
 interface LoadingIndicatorProps {
@@ -7,8 +8,9 @@ interface LoadingIndicatorProps {
 }
 
 export const LoadingIndicator = ({ message = 'Loading...' }: LoadingIndicatorProps) => {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <ActivityIndicator size="large" color={COLORS.primary} />
       <Text style={styles.text}>{message}</Text>
     </View>

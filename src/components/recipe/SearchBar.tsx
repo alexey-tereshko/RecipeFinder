@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE } from '@/constants/uiConstants';
 
@@ -14,8 +15,9 @@ export const SearchBar = ({
   onChangeText, 
   placeholder = 'Search recipes...' 
 }: SearchBarProps) => {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: SPACING.lg + insets.top }]}>
       <View style={styles.inputContainer}>
         <Ionicons name="search" size={ICON_SIZE.md} color={COLORS.text.placeholder} style={styles.icon} allowFontScaling={false} />
         <TextInput
@@ -33,7 +35,6 @@ export const SearchBar = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.lg,
     paddingBottom: SPACING.md,
     backgroundColor: COLORS.background.primary,
   },

@@ -19,7 +19,7 @@ export const RootNavigator = () => {
         <Stack.Screen
           name="MealDetail"
           component={MealDetailScreen}
-          options={{ title: 'Recipe Details' }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
