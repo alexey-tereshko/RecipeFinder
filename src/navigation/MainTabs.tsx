@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import type { MainTabParamList } from './types';
 import { HomeScreen } from '@/app/Home';
 import { FavoritesScreen } from '@/app/Favorites';
-import { COLORS } from '@/constants/uiConstants';
+import { COLORS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY } from '@/constants/uiConstants';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -22,6 +22,28 @@ export const MainTabs = () => {
       screenOptions={{
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: COLORS.text.placeholder,
+        tabBarStyle: {
+          backgroundColor: COLORS.background.primary,
+          borderTopWidth: 1,
+          borderTopColor: COLORS.border.light,
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
+        tabBarLabelStyle: {
+          fontFamily: FONT_FAMILY.regular,
+          fontSize: 12,
+          fontWeight: FONT_WEIGHT.medium,
+        },
+        headerStyle: {
+          backgroundColor: COLORS.background.primary,
+        },
+        headerTitleStyle: {
+          fontFamily: FONT_FAMILY.regular,
+          fontSize: FONT_SIZE.xl,
+          fontWeight: FONT_WEIGHT.bold,
+          color: COLORS.text.primary,
+        },
       }}
     >
       <Tab.Screen

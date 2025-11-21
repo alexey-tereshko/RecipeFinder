@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { RecipeImage } from '@/components/recipe';
 import type { Recipe } from '@/types/recipe';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT } from '@/constants/uiConstants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT } from '@/constants/uiConstants';
 
 interface RecipeHeaderProps {
   recipe: Recipe;
@@ -36,18 +36,23 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
   },
   info: {
-    marginTop: SPACING.lg,
+    marginTop: SPACING.xl,
   },
   title: {
-    fontSize: FONT_SIZE.xl,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.xxxl,
     fontWeight: FONT_WEIGHT.bold,
     color: COLORS.text.primary,
     marginBottom: SPACING.sm,
+    lineHeight: LINE_HEIGHT.xl,
   },
   category: {
-    fontSize: FONT_SIZE.md,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.lg,
     color: COLORS.text.secondary,
     textTransform: 'capitalize',
+    fontWeight: FONT_WEIGHT.medium,
+    lineHeight: LINE_HEIGHT.lg,
   },
 });
 

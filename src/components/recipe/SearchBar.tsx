@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, ICON_SIZE } from '@/constants/uiConstants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE } from '@/constants/uiConstants';
 
 interface SearchBarProps {
   value: string;
@@ -33,24 +33,29 @@ export const SearchBar = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACING.lg,
-    paddingVertical: SPACING.md,
+    paddingTop: SPACING.lg,
+    paddingBottom: SPACING.md,
     backgroundColor: COLORS.background.primary,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 44,
+    height: 48,
     backgroundColor: COLORS.background.secondary,
-    borderRadius: BORDER_RADIUS.md,
-    paddingHorizontal: SPACING.md,
+    borderRadius: BORDER_RADIUS.lg,
+    paddingHorizontal: SPACING.lg,
+    borderWidth: 1,
+    borderColor: COLORS.border.light,
   },
   icon: {
-    marginRight: SPACING.sm,
+    marginRight: SPACING.md,
   },
   input: {
     flex: 1,
+    fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.md,
     color: COLORS.text.primary,
+    lineHeight: LINE_HEIGHT.md,
   },
 });
 

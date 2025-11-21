@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT } from '@/constants/uiConstants';
+import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, BORDER_RADIUS } from '@/constants/uiConstants';
 
 interface InstructionsListProps {
   instructions: string[];
@@ -29,38 +29,45 @@ export const InstructionsList = ({ instructions }: InstructionsListProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: SPACING.lg,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.xl,
   },
   title: {
-    fontSize: FONT_SIZE.lg,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.xl,
     fontWeight: FONT_WEIGHT.bold,
     color: COLORS.text.primary,
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
+    lineHeight: LINE_HEIGHT.xl,
   },
   item: {
     flexDirection: 'row',
-    marginBottom: SPACING.lg,
+    marginBottom: SPACING.xl,
     alignItems: 'flex-start',
   },
   stepNumber: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 36,
+    height: 36,
+    borderRadius: BORDER_RADIUS.round,
     backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: SPACING.md,
+    marginRight: SPACING.lg,
+    minWidth: 36,
   },
   stepText: {
-    fontSize: FONT_SIZE.md,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.lg,
     fontWeight: FONT_WEIGHT.bold,
     color: COLORS.white,
+    lineHeight: LINE_HEIGHT.lg,
   },
   text: {
     flex: 1,
+    fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.md,
     color: COLORS.text.primary,
-    lineHeight: 24,
+    lineHeight: LINE_HEIGHT.md,
   },
 });
 

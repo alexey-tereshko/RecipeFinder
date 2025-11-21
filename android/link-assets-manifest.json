@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Epilogue-Italic-VariableFont_wght.ttf",
+      "sha1": "944c4a141e005ad7fc93176dfdcb52088ffece88"
+    },
+    {
+      "path": "src/assets/fonts/Epilogue-VariableFont_wght.ttf",
+      "sha1": "4f2dd055a21205af1c7553dd4bb7a9dd3088d976"
+    }
+  ]
+}

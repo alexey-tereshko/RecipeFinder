@@ -13,7 +13,7 @@ export const RecipeImage = ({
   uri, 
   width = 100, 
   height = 100, 
-  borderRadius = 8 
+  borderRadius = 12 
 }: RecipeImageProps) => {
   return (
     <View style={[styles.container, { width, height, borderRadius }]}>

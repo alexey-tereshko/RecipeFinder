@@ -25,7 +25,8 @@ export const RecipesList = ({ recipes, onRecipePress }: RecipesListProps) => {
 
 const styles = StyleSheet.create({
   content: {
-    padding: SPACING.lg,
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.xl,
   },
 });
 

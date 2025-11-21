@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT } from '@/constants/uiConstants';
+import { COLORS, SPACING, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT } from '@/constants/uiConstants';
 
 interface IngredientsListProps {
   ingredients: string[];
@@ -27,29 +27,36 @@ export const IngredientsList = ({ ingredients }: IngredientsListProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: SPACING.lg,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.xl,
   },
   title: {
-    fontSize: FONT_SIZE.lg,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.xl,
     fontWeight: FONT_WEIGHT.bold,
     color: COLORS.text.primary,
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
+    lineHeight: LINE_HEIGHT.xl,
   },
   item: {
     flexDirection: 'row',
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.md,
     alignItems: 'flex-start',
   },
   bullet: {
-    fontSize: FONT_SIZE.md,
-    color: COLORS.text.secondary,
-    marginRight: SPACING.sm,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.lg,
+    color: COLORS.primary,
+    marginRight: SPACING.md,
+    fontWeight: FONT_WEIGHT.bold,
+    lineHeight: LINE_HEIGHT.md,
   },
   text: {
     flex: 1,
+    fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.md,
     color: COLORS.text.primary,
-    lineHeight: 24,
+    lineHeight: LINE_HEIGHT.md,
   },
 });
 

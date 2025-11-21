@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, ICON_SIZE, ACTIVE_OPACITY } from '@/constants/uiConstants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE, SHADOW, ACTIVE_OPACITY } from '@/constants/uiConstants';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
@@ -18,7 +18,7 @@ export const FavoriteButton = ({ isFavorite, onPress }: FavoriteButtonProps) => 
       <View style={styles.content}>
         <Ionicons 
           name={isFavorite ? 'heart' : 'heart-outline'} 
-          size={ICON_SIZE.md} 
+          size={ICON_SIZE.lg} 
           color={isFavorite ? COLORS.white : COLORS.primary} 
           style={styles.icon}
         />
@@ -35,27 +35,32 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderWidth: 2,
     borderColor: COLORS.primary,
-    borderRadius: BORDER_RADIUS.md,
-    paddingVertical: 14,
+    borderRadius: BORDER_RADIUS.lg,
+    paddingVertical: SPACING.lg,
     paddingHorizontal: SPACING.xxl,
     alignItems: 'center',
     marginHorizontal: SPACING.lg,
-    marginVertical: SPACING.lg,
+    marginVertical: SPACING.xl,
+    ...SHADOW.small,
   },
   buttonActive: {
     backgroundColor: COLORS.primary,
+    borderColor: COLORS.primary,
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   icon: {
-    marginRight: SPACING.sm,
+    marginRight: SPACING.md,
   },
   text: {
-    fontSize: FONT_SIZE.md,
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: FONT_SIZE.lg,
     fontWeight: FONT_WEIGHT.semibold,
     color: COLORS.primary,
+    lineHeight: LINE_HEIGHT.lg,
   },
   textActive: {
     color: COLORS.white,
