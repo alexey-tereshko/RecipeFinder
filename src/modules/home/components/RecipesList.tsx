@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, useWindowDimensions } from 'react-native';
 import { RecipeCard } from '@/components/recipe';
 import type { RecipeListItem } from '@/types/recipe';
 import { SPACING } from '@/constants/uiConstants';
@@ -7,18 +7,32 @@ import { SPACING } from '@/constants/uiConstants';
 interface RecipesListProps {
   recipes: RecipeListItem[];
   onRecipePress: (recipeId: number) => void;
+  onFavoritePress?: (recipe: RecipeListItem) => void;
+  isFavorite?: (recipeId: number) => boolean;
 }
 
-export const RecipesList = ({ recipes, onRecipePress }: RecipesListProps) => {
+export const RecipesList = ({ recipes, onRecipePress, onFavoritePress, isFavorite }: RecipesListProps) => {
+  const { width } = useWindowDimensions();
+  const numColumns = 2;
+  const cardWidth = (width - SPACING.lg * 3) / numColumns;
+
   return (
     <FlatList
       data={recipes}
       keyExtractor={(item) => String(item.id)}
+      numColumns={numColumns}
       renderItem={({ item }) => (
-        <RecipeCard recipe={item} onPress={onRecipePress} />
+        <RecipeCard
+          recipe={item}
+          onPress={onRecipePress}
+          onFavoritePress={onFavoritePress}
+          isFavorite={isFavorite?.(item.id) || false}
+          width={cardWidth}
+        />
       )}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
+      columnWrapperStyle={styles.row}
     />
   );
 };
@@ -27,6 +41,10 @@ const styles = StyleSheet.create({
   content: {
     paddingTop: SPACING.md,
     paddingBottom: SPACING.xl,
+    paddingHorizontal: SPACING.lg,
+  },
+  row: {
+    justifyContent: 'space-between',
   },
 });
 

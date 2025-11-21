@@ -3,6 +3,7 @@ export interface Recipe {
   name: string;
   image: string;
   category?: string;
+  tags?: string[];
   ingredients?: string[];
   instructions?: string[];
 }
@@ -11,6 +12,8 @@ export interface RecipeListItem {
   id: number;
   name: string;
   image: string;
+  category?: string;
+  tags?: string[];
 }
 
 export interface RecipesResponse {

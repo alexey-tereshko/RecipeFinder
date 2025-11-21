@@ -5,6 +5,7 @@ export class RecipeSchema extends Realm.Object<RecipeSchema> {
   name!: string;
   image!: string;
   category?: string;
+  tags!: Realm.List<string>;
   ingredients!: Realm.List<string>;
   instructions!: Realm.List<string>;
   cachedAt!: Date;
@@ -17,6 +18,7 @@ export class RecipeSchema extends Realm.Object<RecipeSchema> {
       name: 'string',
       image: 'string',
       category: 'string?',
+      tags: 'string[]',
       ingredients: 'string[]',
       instructions: 'string[]',
       cachedAt: 'date',

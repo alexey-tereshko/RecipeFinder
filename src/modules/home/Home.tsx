@@ -8,16 +8,37 @@ import { RecipesList } from './components/RecipesList';
 import { LoadingIndicator } from './components/LoadingIndicator';
 import { ErrorView } from './components/ErrorView';
 import { useHomeRecipes } from './hooks/useHomeRecipes';
+import { useFavorites } from '@/hooks/favorites';
 import { COLORS } from '@/constants/uiConstants';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Home = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { recipes, isLoading, error, searchQuery, handleSearchChange, refetch } = useHomeRecipes();
+  const {
+    recipes,
+    isLoading,
+    error,
+    searchQuery,
+    handleSearchChange,
+    refetch,
+  } = useHomeRecipes();
+  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
   const handleRecipePress = (recipeId: number) => {
     navigation.navigate('MealDetail', { recipeId });
+  };
+
+  const handleFavoritePress = async (recipe: {
+    id: number;
+    name: string;
+    image: string;
+  }) => {
+    if (isFavorite(recipe.id)) {
+      await removeFavorite(recipe.id);
+    } else {
+      await addFavorite(recipe);
+    }
   };
 
   return (
@@ -28,7 +49,12 @@ export const Home = () => {
       ) : error ? (
         <ErrorView message={error.message} onRetry={refetch} />
       ) : (
-        <RecipesList recipes={recipes} onRecipePress={handleRecipePress} />
+        <RecipesList
+          recipes={recipes}
+          onRecipePress={handleRecipePress}
+          onFavoritePress={handleFavoritePress}
+          isFavorite={isFavorite}
+        />
       )}
     </View>
   );
@@ -40,4 +66,3 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background.secondary,
   },
 });
-

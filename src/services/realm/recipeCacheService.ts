@@ -7,7 +7,7 @@ export const recipeCacheService = {
   saveRecipe: async (recipe: Recipe): Promise<void> => {
     const realm = await getRealm();
     realm.write(() => {
-      realm.create('Recipe', {
+      const recipeData: any = {
         id: recipe.id,
         name: recipe.name,
         image: recipe.image,
@@ -15,7 +15,11 @@ export const recipeCacheService = {
         ingredients: recipe.ingredients || [],
         instructions: recipe.instructions || [],
         cachedAt: new Date(),
-      }, Realm.UpdateMode.Modified);
+      };
+      if (recipe.tags) {
+        recipeData.tags = recipe.tags;
+      }
+      realm.create('Recipe', recipeData, Realm.UpdateMode.Modified);
     });
   },
 
@@ -32,6 +36,7 @@ export const recipeCacheService = {
       name: recipe.name,
       image: recipe.image,
       category: recipe.category || undefined,
+      tags: recipe.tags?.length ? Array.from(recipe.tags) : undefined,
       ingredients: recipe.ingredients?.length ? Array.from(recipe.ingredients) : undefined,
       instructions: recipe.instructions?.length ? Array.from(recipe.instructions) : undefined,
     };
@@ -45,17 +50,25 @@ export const recipeCacheService = {
         if (existing) {
           existing.name = recipe.name;
           existing.image = recipe.image;
+          existing.category = recipe.category || '';
+          if (recipe.tags) {
+            existing.tags.splice(0, existing.tags.length, ...recipe.tags);
+          } else {
+            existing.tags.splice(0, existing.tags.length);
+          }
           existing.cachedAt = new Date();
         } else {
-          realm.create('Recipe', {
+          const recipeData: any = {
             id: recipe.id,
             name: recipe.name,
             image: recipe.image,
-            category: '',
+            category: recipe.category || '',
+            tags: recipe.tags || [],
             ingredients: [],
             instructions: [],
             cachedAt: new Date(),
-          });
+          };
+          realm.create('Recipe', recipeData);
         }
       });
     });
@@ -69,6 +82,8 @@ export const recipeCacheService = {
       id: recipe.id,
       name: recipe.name,
       image: recipe.image,
+      category: recipe.category || undefined,
+      tags: recipe.tags?.length ? Array.from(recipe.tags) : undefined,
     }));
   },
 

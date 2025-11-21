@@ -25,7 +25,7 @@ export const createApiClient = (): ApiClient => ({
     const url = buildUrl(API_ENDPOINTS.RECIPES, {
       limit: params?.limit ?? 10,
       skip: params?.skip ?? 0,
-      select: params?.select ?? 'name,image',
+      select: params?.select ?? 'name,image,category,tags',
     });
     return fetchJson<RecipesResponse>(url);
   },
@@ -35,7 +35,7 @@ export const createApiClient = (): ApiClient => ({
       q: params.q,
       limit: params.limit ?? 10,
       skip: params.skip ?? 0,
-      select: params.select ?? 'name,image',
+      select: params.select ?? 'name,image,category,tags',
     });
     return fetchJson<RecipesResponse>(url);
   },
