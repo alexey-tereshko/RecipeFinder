@@ -1,16 +1,16 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../types/navigation';
-import { useRecipe } from '../../hooks/recipes';
-import { useFavorites } from '../../hooks/favorites';
-import { LoadingIndicator } from '../home/components/LoadingIndicator';
-import { ErrorView } from '../home/components/ErrorView';
+import type { RootStackParamList } from '@/types/navigation';
+import { useRecipe } from '@/hooks/recipes';
+import { useFavorites } from '@/hooks/favorites';
+import { LoadingIndicator } from '@/modules/home/components/LoadingIndicator';
+import { ErrorView } from '@/modules/home/components/ErrorView';
 import { RecipeHeader } from './components/RecipeHeader';
 import { IngredientsList } from './components/IngredientsList';
 import { InstructionsList } from './components/InstructionsList';
 import { FavoriteButton } from './components/FavoriteButton';
-import { COLORS } from '../../constants/uiConstants';
+import { COLORS } from '@/constants/uiConstants';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>;
 

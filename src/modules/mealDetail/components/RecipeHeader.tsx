@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
-import { RecipeImage } from '../../../components/recipe';
-import type { Recipe } from '../../../types/recipe';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT } from '../../../constants/uiConstants';
+import { RecipeImage } from '@/components/recipe';
+import type { Recipe } from '@/types/recipe';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT } from '@/constants/uiConstants';
 
 interface RecipeHeaderProps {
   recipe: Recipe;

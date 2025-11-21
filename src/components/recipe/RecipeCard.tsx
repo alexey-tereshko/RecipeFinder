@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import { RecipeImage } from './RecipeImage';
-import type { RecipeListItem } from '../../types/recipe';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, SHADOW, ACTIVE_OPACITY } from '../../constants/uiConstants';
+import type { RecipeListItem } from '@/types/recipe';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, SHADOW, ACTIVE_OPACITY } from '@/constants/uiConstants';
 
 interface RecipeCardProps {
   recipe: RecipeListItem;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, ICON_SIZE } from '../../constants/uiConstants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, ICON_SIZE } from '@/constants/uiConstants';
 
 interface SearchBarProps {
   value: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, ICON_SIZE, ACTIVE_OPACITY } from '../../../constants/uiConstants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, ICON_SIZE, ACTIVE_OPACITY } from '@/constants/uiConstants';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;

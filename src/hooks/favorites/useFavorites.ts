@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { RecipeListItem } from '../../types/recipe';
+import type { RecipeListItem } from '@/types/recipe';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<RecipeListItem[]>([]);

@@ -1,5 +1,5 @@
 import { API_BASE_URL, API_ENDPOINTS } from './constants';
-import type { Recipe, RecipesResponse } from '../types/recipe';
+import type { Recipe, RecipesResponse } from '@/types/recipe';
 import type { ApiClient, FetchRecipesParams, SearchRecipesParams } from './types';
 
 const buildUrl = (endpoint: string, params?: Record<string, string | number>): string => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { COLORS } from '../../constants/uiConstants';
+import { COLORS } from '@/constants/uiConstants';
 
 interface RecipeImageProps {
   uri: string;

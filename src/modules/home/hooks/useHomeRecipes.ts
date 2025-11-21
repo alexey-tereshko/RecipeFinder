@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useRecipes } from '../../../hooks/recipes';
-import { useSearchRecipes } from '../../../hooks/recipes';
-import type { RecipeListItem } from '../../../types/recipe';
+import { useRecipes } from '@/hooks/recipes';
+import { useSearchRecipes } from '@/hooks/recipes';
+import type { RecipeListItem } from '@/types/recipe';
 
 export const useHomeRecipes = () => {
   const [searchQuery, setSearchQuery] = useState('');

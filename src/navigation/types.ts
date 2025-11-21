@@ -1,2 +1,2 @@
-export { type RootStackParamList, type MainTabParamList } from '../types/navigation';
+export { type RootStackParamList, type MainTabParamList } from '@/types/navigation';
 

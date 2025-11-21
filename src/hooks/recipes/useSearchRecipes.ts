@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import { apiClient } from '../../api';
-import type { RecipeListItem, RecipesResponse } from '../../types/recipe';
+import { apiClient } from '@/api';
+import type { RecipeListItem, RecipesResponse } from '@/types/recipe';
 
 interface UseSearchRecipesParams {
   limit?: number;

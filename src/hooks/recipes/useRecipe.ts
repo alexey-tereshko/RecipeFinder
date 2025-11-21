@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { apiClient } from '../../api';
-import type { Recipe } from '../../types/recipe';
+import { apiClient } from '@/api';
+import type { Recipe } from '@/types/recipe';
 
 export const useRecipe = (id: number) => {
   const [recipe, setRecipe] = useState<Recipe | null>(null);

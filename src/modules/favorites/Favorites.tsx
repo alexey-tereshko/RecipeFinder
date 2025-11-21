@@ -2,11 +2,11 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../types/navigation';
-import { useFavorites } from '../../hooks/favorites';
-import { RecipesList } from '../home/components/RecipesList';
-import { ErrorView } from '../home/components/ErrorView';
-import { COLORS } from '../../constants/uiConstants';
+import type { RootStackParamList } from '@/types/navigation';
+import { useFavorites } from '@/hooks/favorites';
+import { RecipesList } from '@/modules/home/components/RecipesList';
+import { ErrorView } from '@/modules/home/components/ErrorView';
+import { COLORS } from '@/constants/uiConstants';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 

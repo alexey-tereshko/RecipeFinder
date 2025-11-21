@@ -2,9 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type { MainTabParamList } from './types';
-import { HomeScreen } from '../app/Home';
-import { FavoritesScreen } from '../app/Favorites';
-import { COLORS } from '../constants/uiConstants';
+import { HomeScreen } from '@/app/Home';
+import { FavoritesScreen } from '@/app/Favorites';
+import { COLORS } from '@/constants/uiConstants';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 

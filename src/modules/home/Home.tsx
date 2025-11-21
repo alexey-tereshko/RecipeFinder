@@ -2,13 +2,13 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../types/navigation';
-import { SearchBar } from '../../components/recipe';
+import type { RootStackParamList } from '@/types/navigation';
+import { SearchBar } from '@/components/recipe';
 import { RecipesList } from './components/RecipesList';
 import { LoadingIndicator } from './components/LoadingIndicator';
 import { ErrorView } from './components/ErrorView';
 import { useHomeRecipes } from './hooks/useHomeRecipes';
-import { COLORS } from '../../constants/uiConstants';
+import { COLORS } from '@/constants/uiConstants';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
