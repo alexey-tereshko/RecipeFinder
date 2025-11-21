@@ -61,7 +61,5 @@ npm run lint
 ## E2E Tests
 
 Tests cover:
-- Navigation between screens
 - Pagination
 - Search
-- Tab switching
