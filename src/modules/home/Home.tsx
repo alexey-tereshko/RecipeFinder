@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { SearchBar } from '@/components/recipe/SearchBar';
@@ -26,7 +26,13 @@ export const Home = () => {
     handlePageChange,
     refetch,
   } = useHomeRecipes();
-  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
+  const { isFavorite, addFavorite, removeFavorite, refetch: refetchFavorites } = useFavorites();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetchFavorites();
+    }, [refetchFavorites])
+  );
 
   const handleRecipePress = (recipeId: number) => {
     navigation.navigate('MealDetail', { recipeId });

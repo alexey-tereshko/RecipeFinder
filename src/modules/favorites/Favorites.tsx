@@ -13,7 +13,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Favorites = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { favorites, isLoading, refetch } = useFavorites();
+  const { favorites, isLoading, refetch, removeFavorite } = useFavorites();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -23,6 +23,10 @@ export const Favorites = () => {
 
   const handleRecipePress = (recipeId: number) => {
     navigation.navigate('MealDetail', { recipeId });
+  };
+
+  const handleFavoritePress = async (recipeId: number) => {
+    await removeFavorite(recipeId);
   };
 
   if (isLoading) {
@@ -39,7 +43,11 @@ export const Favorites = () => {
 
   return (
     <View style={styles.container}>
-      <FavoritesList recipes={favorites} onRecipePress={handleRecipePress} />
+      <FavoritesList
+        recipes={favorites}
+        onRecipePress={handleRecipePress}
+        onFavoritePress={handleFavoritePress}
+      />
     </View>
   );
 };

@@ -18,13 +18,22 @@ import {
 interface FavoriteListItemProps {
   recipe: RecipeListItem;
   onPress: (recipeId: number) => void;
+  onFavoritePress?: (recipeId: number) => void;
 }
 
 export const FavoriteListItem = ({
   recipe,
   onPress,
+  onFavoritePress,
 }: FavoriteListItemProps) => {
   const imageSize = 80;
+
+  const handleFavoritePress = (e: any) => {
+    e.stopPropagation();
+    if (onFavoritePress) {
+      onFavoritePress(recipe.id);
+    }
+  };
 
   return (
     <TouchableOpacity
@@ -46,14 +55,18 @@ export const FavoriteListItem = ({
           {recipe.name}
         </Text>
       </View>
-      <View style={styles.favoriteIcon}>
+      <TouchableOpacity
+        style={styles.favoriteIcon}
+        onPress={handleFavoritePress}
+        activeOpacity={ACTIVE_OPACITY}
+      >
         <Ionicons
           name="heart"
           size={ICON_SIZE.md}
           color={COLORS.primary}
           allowFontScaling={false}
         />
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };

@@ -25,6 +25,8 @@ export const useRecipes = (params?: UseRecipesParams) => {
         select: 'name,image,cuisine,tags,mealType',
       });
 
+      console.log('response', response);
+
       setRecipes(response.recipes);
       setTotal(response.total);
       await recipeCacheService.saveRecipesList(response.recipes);
@@ -33,13 +35,13 @@ export const useRecipes = (params?: UseRecipesParams) => {
       const skip = params?.skip ?? 0;
       const limit = params?.limit ?? 10;
       const paginatedCached = cachedRecipes.slice(skip, skip + limit);
-      
+
       if (paginatedCached.length > 0) {
         setRecipes(paginatedCached);
         setTotal(cachedRecipes.length);
       } else {
         setError(
-          err instanceof Error ? err : new Error('Failed to fetch recipes')
+          err instanceof Error ? err : new Error('Failed to fetch recipes'),
         );
       }
     } finally {
@@ -59,4 +61,3 @@ export const useRecipes = (params?: UseRecipesParams) => {
     refetch: fetchRecipes,
   };
 };
-

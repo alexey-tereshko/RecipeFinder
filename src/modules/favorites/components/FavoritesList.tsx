@@ -8,11 +8,13 @@ import { SPACING } from '@/constants/uiConstants';
 interface FavoritesListProps {
   recipes: RecipeListItem[];
   onRecipePress: (recipeId: number) => void;
+  onFavoritePress?: (recipeId: number) => void;
 }
 
 export const FavoritesList = ({
   recipes,
   onRecipePress,
+  onFavoritePress,
 }: FavoritesListProps) => {
   const insets = useSafeAreaInsets();
 
@@ -21,7 +23,11 @@ export const FavoritesList = ({
       data={recipes}
       keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => (
-        <FavoriteListItem recipe={item} onPress={onRecipePress} />
+        <FavoriteListItem
+          recipe={item}
+          onPress={onRecipePress}
+          onFavoritePress={onFavoritePress}
+        />
       )}
       contentContainerStyle={[
         styles.content,
