@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { apiClient } from '@/api/apiClient';
 import type { RecipeListItem, RecipesResponse } from '@/types/recipe';
 
@@ -12,8 +12,9 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [total, setTotal] = useState(0);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const search = useCallback(
+  const performSearch = useCallback(
     async (query: string, skipOverride?: number) => {
       if (!query.trim()) {
         setRecipes([]);
@@ -43,6 +44,26 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
       }
     },
     [params?.limit, params?.skip]
+  );
+
+  const search = useCallback(
+    (query: string, skipOverride?: number) => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+
+      if (!query.trim()) {
+        setRecipes([]);
+        setTotal(0);
+        setIsLoading(false);
+        return;
+      }
+
+      debounceTimerRef.current = setTimeout(() => {
+        performSearch(query, skipOverride);
+      }, 1000);
+    },
+    [performSearch]
   );
 
   return {

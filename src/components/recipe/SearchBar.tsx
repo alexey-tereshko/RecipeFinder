@@ -71,8 +71,6 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.sm,
     color: COLORS.text.primary,
-    lineHeight: LINE_HEIGHT.sm,
-    paddingVertical: 0,
     paddingHorizontal: 0,
   },
 });

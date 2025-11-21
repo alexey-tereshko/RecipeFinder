@@ -1,8 +1,15 @@
 import { API_BASE_URL, API_ENDPOINTS } from './constants';
 import type { Recipe, RecipesResponse } from '@/types/recipe';
-import type { ApiClient, FetchRecipesParams, SearchRecipesParams } from './types';
+import type {
+  ApiClient,
+  FetchRecipesParams,
+  SearchRecipesParams,
+} from './types';
 
-const buildUrl = (endpoint: string, params?: Record<string, string | number>): string => {
+const buildUrl = (
+  endpoint: string,
+  params?: Record<string, string | number>,
+): string => {
   const url = new URL(`${API_BASE_URL}${endpoint}`);
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
@@ -21,7 +28,9 @@ const fetchJson = async <T>(url: string): Promise<T> => {
 };
 
 export const createApiClient = (): ApiClient => ({
-  fetchRecipes: async (params?: FetchRecipesParams): Promise<RecipesResponse> => {
+  fetchRecipes: async (
+    params?: FetchRecipesParams,
+  ): Promise<RecipesResponse> => {
     const url = buildUrl(API_ENDPOINTS.RECIPES, {
       limit: params?.limit ?? 10,
       skip: params?.skip ?? 0,
@@ -30,7 +39,9 @@ export const createApiClient = (): ApiClient => ({
     return fetchJson<RecipesResponse>(url);
   },
 
-  searchRecipes: async (params: SearchRecipesParams): Promise<RecipesResponse> => {
+  searchRecipes: async (
+    params: SearchRecipesParams,
+  ): Promise<RecipesResponse> => {
     const url = buildUrl(API_ENDPOINTS.RECIPES_SEARCH, {
       q: params.q,
       limit: params.limit ?? 10,
@@ -47,4 +58,3 @@ export const createApiClient = (): ApiClient => ({
 });
 
 export const apiClient = createApiClient();
-
