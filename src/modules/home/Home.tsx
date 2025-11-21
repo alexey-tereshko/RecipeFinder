@@ -21,6 +21,9 @@ export const Home = () => {
     error,
     searchQuery,
     handleSearchChange,
+    currentPage,
+    totalPages,
+    handlePageChange,
     refetch,
   } = useHomeRecipes();
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
@@ -54,6 +57,10 @@ export const Home = () => {
           onRecipePress={handleRecipePress}
           onFavoritePress={handleFavoritePress}
           isFavorite={isFavorite}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          isLoading={isLoading}
         />
       )}
     </View>

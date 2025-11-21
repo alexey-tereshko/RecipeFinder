@@ -1,7 +1,7 @@
-import React from 'react';
-import { FlatList, StyleSheet, useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useRef, useEffect } from 'react';
+import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { RecipeCard } from '@/components/recipe/RecipeCard';
+import { PaginationControls } from './PaginationControls';
 import type { RecipeListItem } from '@/types/recipe';
 import { SPACING } from '@/constants/uiConstants';
 
@@ -10,39 +10,72 @@ interface RecipesListProps {
   onRecipePress: (recipeId: number) => void;
   onFavoritePress?: (recipe: RecipeListItem) => void;
   isFavorite?: (recipeId: number) => boolean;
+  currentPage?: number;
+  totalPages?: number;
+  onPageChange?: (page: number) => void;
+  isLoading?: boolean;
 }
 
-export const RecipesList = ({ recipes, onRecipePress, onFavoritePress, isFavorite }: RecipesListProps) => {
+export const RecipesList = ({
+  recipes,
+  onRecipePress,
+  onFavoritePress,
+  isFavorite,
+  currentPage = 1,
+  totalPages = 1,
+  onPageChange,
+  isLoading = false,
+}: RecipesListProps) => {
   const { width } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
   const numColumns = 2;
   const cardWidth = (width - SPACING.lg * 3) / numColumns;
+  const flatListRef = useRef<FlatList>(null);
+
+  useEffect(() => {
+    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+  }, [currentPage]);
 
   return (
-    <FlatList
-      data={recipes}
-      keyExtractor={(item) => String(item.id)}
-      numColumns={numColumns}
-      renderItem={({ item }) => (
-        <RecipeCard
-          recipe={item}
-          onPress={onRecipePress}
-          onFavoritePress={onFavoritePress}
-          isFavorite={isFavorite?.(item.id) || false}
-          width={cardWidth}
+    <View style={styles.container}>
+      <FlatList
+        ref={flatListRef}
+        data={recipes}
+        keyExtractor={(item) => String(item.id)}
+        numColumns={numColumns}
+        renderItem={({ item }) => (
+          <RecipeCard
+            recipe={item}
+            onPress={onRecipePress}
+            onFavoritePress={onFavoritePress}
+            isFavorite={isFavorite?.(item.id) || false}
+            width={cardWidth}
+          />
+        )}
+        contentContainerStyle={[
+          styles.content,
+          { paddingBottom: SPACING.md },
+        ]}
+        showsVerticalScrollIndicator={false}
+        columnWrapperStyle={styles.row}
+      />
+      {onPageChange && (
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+          isLoading={isLoading}
         />
       )}
-      contentContainerStyle={[styles.content, { paddingBottom: SPACING.xl + insets.bottom }]}
-      showsVerticalScrollIndicator={false}
-      columnWrapperStyle={styles.row}
-    />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   content: {
     paddingTop: SPACING.md,
-    paddingBottom: SPACING.xl,
     paddingHorizontal: SPACING.lg,
   },
   row: {

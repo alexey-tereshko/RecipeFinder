@@ -18,28 +18,29 @@ export const useRecipes = (params?: UseRecipesParams) => {
     try {
       setIsLoading(true);
       setError(null);
-      
-      const cachedRecipes = await recipeCacheService.getRecipesList();
-      if (cachedRecipes.length > 0) {
-        setRecipes(cachedRecipes);
-        setIsLoading(false);
-      }
 
       const response: RecipesResponse = await apiClient.fetchRecipes({
         limit: params?.limit ?? 10,
         skip: params?.skip ?? 0,
-        select: 'name,image',
+        select: 'name,image,cuisine,tags,mealType',
       });
-      
+
       setRecipes(response.recipes);
       setTotal(response.total);
       await recipeCacheService.saveRecipesList(response.recipes);
     } catch (err) {
       const cachedRecipes = await recipeCacheService.getRecipesList();
-      if (cachedRecipes.length > 0) {
-        setRecipes(cachedRecipes);
+      const skip = params?.skip ?? 0;
+      const limit = params?.limit ?? 10;
+      const paginatedCached = cachedRecipes.slice(skip, skip + limit);
+      
+      if (paginatedCached.length > 0) {
+        setRecipes(paginatedCached);
+        setTotal(cachedRecipes.length);
       } else {
-        setError(err instanceof Error ? err : new Error('Failed to fetch recipes'));
+        setError(
+          err instanceof Error ? err : new Error('Failed to fetch recipes')
+        );
       }
     } finally {
       setIsLoading(false);

@@ -2,7 +2,15 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE } from '@/constants/uiConstants';
+import {
+  COLORS,
+  SPACING,
+  BORDER_RADIUS,
+  FONT_SIZE,
+  FONT_FAMILY,
+  LINE_HEIGHT,
+  ICON_SIZE,
+} from '@/constants/uiConstants';
 
 interface SearchBarProps {
   value: string;
@@ -10,16 +18,22 @@ interface SearchBarProps {
   placeholder?: string;
 }
 
-export const SearchBar = ({ 
-  value, 
-  onChangeText, 
-  placeholder = 'Search recipes...' 
+export const SearchBar = ({
+  value,
+  onChangeText,
+  placeholder = 'Search recipes...',
 }: SearchBarProps) => {
   const insets = useSafeAreaInsets();
   return (
     <View style={[styles.container, { paddingTop: SPACING.lg + insets.top }]}>
       <View style={styles.inputContainer}>
-        <Ionicons name="search" size={ICON_SIZE.md} color={COLORS.text.placeholder} style={styles.icon} allowFontScaling={false} />
+        <Ionicons
+          name="search"
+          size={ICON_SIZE.md}
+          color={COLORS.text.placeholder}
+          style={styles.icon}
+          allowFontScaling={false}
+        />
         <TextInput
           style={styles.input}
           value={value}
@@ -54,9 +68,10 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontFamily: FONT_FAMILY.regular,
-    fontSize: FONT_SIZE.md,
+    fontSize: FONT_SIZE.sm,
     color: COLORS.text.primary,
-    lineHeight: LINE_HEIGHT.md,
+    lineHeight: LINE_HEIGHT.sm,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
   },
 });
-
