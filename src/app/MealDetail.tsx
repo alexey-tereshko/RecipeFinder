@@ -8,4 +8,3 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>;
 export const MealDetailScreen = ({ route }: Props) => {
   return <MealDetail route={route} />;
 };
-

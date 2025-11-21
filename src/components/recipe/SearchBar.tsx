@@ -35,6 +35,7 @@ export const SearchBar = ({
           allowFontScaling={false}
         />
         <TextInput
+          testID="search-input"
           style={styles.input}
           value={value}
           onChangeText={onChangeText}

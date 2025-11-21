@@ -1,9 +1,26 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, Text, View, Dimensions } from 'react-native';
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RecipeImage } from './RecipeImage';
 import type { RecipeListItem } from '@/types/recipe';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, SHADOW, ACTIVE_OPACITY, ICON_SIZE } from '@/constants/uiConstants';
+import {
+  COLORS,
+  SPACING,
+  BORDER_RADIUS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  FONT_FAMILY,
+  LINE_HEIGHT,
+  SHADOW,
+  ACTIVE_OPACITY,
+  ICON_SIZE,
+} from '@/constants/uiConstants';
 
 interface RecipeCardProps {
   recipe: RecipeListItem;
@@ -13,8 +30,15 @@ interface RecipeCardProps {
   width?: number;
 }
 
-export const RecipeCard = ({ recipe, onPress, onFavoritePress, isFavorite = false, width }: RecipeCardProps) => {
-  const cardWidth = width || (Dimensions.get('window').width - SPACING.lg * 3) / 2;
+export const RecipeCard = ({
+  recipe,
+  onPress,
+  onFavoritePress,
+  isFavorite = false,
+  width,
+}: RecipeCardProps) => {
+  const cardWidth =
+    width || (Dimensions.get('window').width - SPACING.lg * 3) / 2;
   const imageHeight = cardWidth * 0.75;
 
   const handleFavoritePress = (e: any) => {
@@ -26,38 +50,40 @@ export const RecipeCard = ({ recipe, onPress, onFavoritePress, isFavorite = fals
 
   return (
     <TouchableOpacity
+      testID={`recipe-card-${recipe.id}`}
       style={[styles.card, { width: cardWidth }]}
       onPress={() => onPress(recipe.id)}
       activeOpacity={ACTIVE_OPACITY}
     >
       <View style={styles.imageContainer}>
-        <RecipeImage 
-          uri={recipe.image} 
-          width={cardWidth} 
-          height={imageHeight} 
-          borderRadius={0} 
+        <RecipeImage
+          uri={recipe.image}
+          width={cardWidth}
+          height={imageHeight}
+          borderRadius={0}
         />
-        {onFavoritePress && (
+        {onFavoritePress && isFavorite && (
           <TouchableOpacity
+            testID={`favorite-button-${recipe.id}`}
             style={styles.favoriteButton}
             onPress={handleFavoritePress}
             activeOpacity={ACTIVE_OPACITY}
           >
             <Ionicons
-              name={isFavorite ? 'heart' : 'heart-outline'}
-              size={ICON_SIZE.md}
-              color={isFavorite ? COLORS.primary : COLORS.text.primary}
+              name="heart"
+              size={ICON_SIZE.sm}
+              color={COLORS.primary}
               allowFontScaling={false}
             />
           </TouchableOpacity>
         )}
-        {recipe.cuisine && (
-          <View style={styles.categoryBadge}>
-            <Text style={styles.categoryText}>{recipe.cuisine}</Text>
-          </View>
-        )}
       </View>
       <View style={styles.content}>
+        {recipe.cuisine && (
+          <Text style={styles.categoryText}>
+            {recipe.cuisine.toUpperCase()}
+          </Text>
+        )}
         <Text style={styles.title} numberOfLines={2}>
           {recipe.name}
         </Text>
@@ -94,29 +120,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: SPACING.md,
     right: SPACING.md,
-    width: 36,
-    height: 36,
-    borderRadius: BORDER_RADIUS.round,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    width: 30,
+    height: 30,
+    borderRadius: BORDER_RADIUS.md,
+    backgroundColor: COLORS.background.favoriteButton,
     justifyContent: 'center',
     alignItems: 'center',
     ...SHADOW.small,
-  },
-  categoryBadge: {
-    position: 'absolute',
-    bottom: SPACING.md,
-    left: SPACING.md,
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.xs,
-    borderRadius: BORDER_RADIUS.sm,
   },
   categoryText: {
     fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.xs,
     fontWeight: FONT_WEIGHT.semibold,
-    color: COLORS.white,
-    textTransform: 'capitalize',
+    color: COLORS.primary,
+    marginBottom: SPACING.xs,
   },
   content: {
     padding: SPACING.md,
@@ -148,4 +165,3 @@ const styles = StyleSheet.create({
     color: COLORS.text.secondary,
   },
 });
-

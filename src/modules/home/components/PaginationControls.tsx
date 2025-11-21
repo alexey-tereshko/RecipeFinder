@@ -44,6 +44,7 @@ export const PaginationControls = ({
   return (
     <View style={[styles.container]}>
       <TouchableOpacity
+        testID="pagination-prev-button"
         style={[
           styles.button,
           (currentPage === 1 || isLoading) && styles.buttonDisabled,
@@ -65,12 +66,13 @@ export const PaginationControls = ({
       </TouchableOpacity>
 
       <View style={styles.pageInfo}>
-        <Text style={styles.pageText}>
+        <Text testID="pagination-page-info" style={styles.pageText}>
           {currentPage} / {totalPages}
         </Text>
       </View>
 
       <TouchableOpacity
+        testID="pagination-next-button"
         style={[
           styles.button,
           (currentPage === totalPages || isLoading) && styles.buttonDisabled,

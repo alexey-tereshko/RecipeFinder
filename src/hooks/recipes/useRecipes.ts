@@ -25,8 +25,6 @@ export const useRecipes = (params?: UseRecipesParams) => {
         select: 'name,image,cuisine,tags,mealType',
       });
 
-      console.log('response', response);
-
       setRecipes(response.recipes);
       setTotal(response.total);
       await recipeCacheService.saveRecipesList(response.recipes);

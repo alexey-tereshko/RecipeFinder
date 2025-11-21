@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { RecipeImage } from '@/components/recipe/RecipeImage';
+import { RecipeImage } from './RecipeImage';
 import type { RecipeListItem } from '@/types/recipe';
 import {
   COLORS,
@@ -15,29 +15,31 @@ import {
   ACTIVE_OPACITY,
 } from '@/constants/uiConstants';
 
-interface FavoriteListItemProps {
+interface SearchResultItemProps {
   recipe: RecipeListItem;
   onPress: (recipeId: number) => void;
-  onFavoritePress?: (recipeId: number) => void;
+  onFavoritePress?: (recipe: RecipeListItem) => void;
+  isFavorite?: boolean;
 }
 
-export const FavoriteListItem = ({
+export const SearchResultItem = ({
   recipe,
   onPress,
   onFavoritePress,
-}: FavoriteListItemProps) => {
+  isFavorite = false,
+}: SearchResultItemProps) => {
   const imageSize = 80;
 
   const handleFavoritePress = (e: any) => {
     e.stopPropagation();
     if (onFavoritePress) {
-      onFavoritePress(recipe.id);
+      onFavoritePress(recipe);
     }
   };
 
   return (
     <TouchableOpacity
-      testID={`favorite-item-${recipe.id}`}
+      testID={`search-result-${recipe.id}`}
       style={styles.container}
       onPress={() => onPress(recipe.id)}
       activeOpacity={ACTIVE_OPACITY}
@@ -56,19 +58,24 @@ export const FavoriteListItem = ({
           {recipe.name}
         </Text>
       </View>
-      <TouchableOpacity
-        testID={`favorite-item-icon-${recipe.id}`}
-        style={styles.favoriteIcon}
-        onPress={handleFavoritePress}
-        activeOpacity={ACTIVE_OPACITY}
-      >
-        <Ionicons
-          name="heart"
-          size={ICON_SIZE.md}
-          color={COLORS.primary}
-          allowFontScaling={false}
-        />
-      </TouchableOpacity>
+      {onFavoritePress && (
+        <TouchableOpacity
+          testID={`search-favorite-button-${recipe.id}`}
+          style={[
+            styles.favoriteIcon,
+            isFavorite && styles.favoriteIconActive,
+          ]}
+          onPress={handleFavoritePress}
+          activeOpacity={ACTIVE_OPACITY}
+        >
+          <Ionicons
+            name={isFavorite ? 'heart' : 'heart-outline'}
+            size={ICON_SIZE.md}
+            color={isFavorite ? COLORS.primary : COLORS.text.placeholder}
+            allowFontScaling={false}
+          />
+        </TouchableOpacity>
+      )}
     </TouchableOpacity>
   );
 };
@@ -94,7 +101,6 @@ const styles = StyleSheet.create({
     fontWeight: FONT_WEIGHT.semibold,
     color: COLORS.primary,
     marginBottom: SPACING.xs,
-    letterSpacing: 0.5,
   },
   title: {
     fontFamily: FONT_FAMILY.regular,
@@ -107,8 +113,12 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: BORDER_RADIUS.md,
-    backgroundColor: `${COLORS.primary}20`,
+    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  favoriteIconActive: {
+    backgroundColor: COLORS.background.favoriteButton,
+  },
 });
+

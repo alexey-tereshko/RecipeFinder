@@ -67,6 +67,7 @@ export const Home = () => {
           totalPages={totalPages}
           onPageChange={handlePageChange}
           isLoading={isLoading}
+          isSearchMode={!!searchQuery.trim()}
         />
       )}
     </View>

@@ -1,20 +1,25 @@
 import React from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
+import { View, StatusBar, useColorScheme, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RootNavigator } from '@/navigation/RootNavigator';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <View style={styles.container}>
       <SafeAreaProvider>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <RootNavigator />
       </SafeAreaProvider>
-    </GestureHandlerRootView>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default App;

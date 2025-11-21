@@ -14,6 +14,7 @@ export const COLORS = {
     secondary: '#F8F8F8',
     image: '#E5E5E5',
     card: '#FFFFFF',
+    favoriteButton: '#D1F6AC',
   },
   border: {
     light: '#E0E0E0',

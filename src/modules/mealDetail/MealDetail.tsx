@@ -1,7 +1,9 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import type { RouteProp } from '@react-navigation/native';
 import type { RootStackParamList } from '@/types/navigation';
 import { useRecipe } from '@/hooks/recipes/useRecipe';
 import { useFavorites } from '@/hooks/favorites/useFavorites';
@@ -11,12 +13,21 @@ import { RecipeHeader } from './components/RecipeHeader';
 import { IngredientsList } from './components/IngredientsList';
 import { InstructionsList } from './components/InstructionsList';
 import { FavoriteButton } from './components/FavoriteButton';
-import { COLORS } from '@/constants/uiConstants';
+import {
+  COLORS,
+  SPACING,
+  BORDER_RADIUS,
+  ICON_SIZE,
+  SHADOW,
+} from '@/constants/uiConstants';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>;
+type Props = {
+  route: RouteProp<RootStackParamList, 'MealDetail'>;
+};
 
 export const MealDetail = ({ route }: Props) => {
   const { recipeId } = route.params;
+  const navigation = useNavigation();
   const { recipe, isLoading, error, refetch } = useRecipe(recipeId);
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
   const insets = useSafeAreaInsets();
@@ -50,6 +61,7 @@ export const MealDetail = ({ route }: Props) => {
 
   return (
     <ScrollView
+      testID="meal-detail-scroll-view"
       style={styles.container}
       contentContainerStyle={{
         paddingBottom: insets.bottom,

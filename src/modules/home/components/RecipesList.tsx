@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { RecipeCard } from '@/components/recipe/RecipeCard';
+import { SearchResultItem } from '@/components/recipe/SearchResultItem';
 import { PaginationControls } from './PaginationControls';
 import type { RecipeListItem } from '@/types/recipe';
 import { SPACING } from '@/constants/uiConstants';
@@ -14,6 +15,7 @@ interface RecipesListProps {
   totalPages?: number;
   onPageChange?: (page: number) => void;
   isLoading?: boolean;
+  isSearchMode?: boolean;
 }
 
 export const RecipesList = ({
@@ -25,9 +27,10 @@ export const RecipesList = ({
   totalPages = 1,
   onPageChange,
   isLoading = false,
+  isSearchMode = false,
 }: RecipesListProps) => {
   const { width } = useWindowDimensions();
-  const numColumns = 2;
+  const numColumns = isSearchMode ? 1 : 2;
   const cardWidth = (width - SPACING.lg * 3) / numColumns;
   const flatListRef = useRef<FlatList>(null);
 
@@ -38,25 +41,35 @@ export const RecipesList = ({
   return (
     <View style={styles.container}>
       <FlatList
+        key={isSearchMode ? 'search' : 'grid'}
         ref={flatListRef}
         data={recipes}
         keyExtractor={(item) => String(item.id)}
         numColumns={numColumns}
-        renderItem={({ item }) => (
-          <RecipeCard
-            recipe={item}
-            onPress={onRecipePress}
-            onFavoritePress={onFavoritePress}
-            isFavorite={isFavorite?.(item.id) || false}
-            width={cardWidth}
-          />
-        )}
+        renderItem={({ item }) =>
+          isSearchMode ? (
+            <SearchResultItem
+              recipe={item}
+              onPress={onRecipePress}
+              onFavoritePress={onFavoritePress}
+              isFavorite={isFavorite?.(item.id) || false}
+            />
+          ) : (
+            <RecipeCard
+              recipe={item}
+              onPress={onRecipePress}
+              onFavoritePress={onFavoritePress}
+              isFavorite={isFavorite?.(item.id) || false}
+              width={cardWidth}
+            />
+          )
+        }
         contentContainerStyle={[
-          styles.content,
+          isSearchMode ? styles.searchContent : styles.content,
           { paddingBottom: SPACING.md },
         ]}
         showsVerticalScrollIndicator={false}
-        columnWrapperStyle={styles.row}
+        columnWrapperStyle={numColumns > 1 ? styles.row : undefined}
       />
       {onPageChange && (
         <PaginationControls
@@ -77,6 +90,9 @@ const styles = StyleSheet.create({
   content: {
     paddingTop: SPACING.md,
     paddingHorizontal: SPACING.lg,
+  },
+  searchContent: {
+    paddingTop: SPACING.md,
   },
   row: {
     justifyContent: 'space-between',

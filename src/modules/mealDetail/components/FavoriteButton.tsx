@@ -29,6 +29,7 @@ export const FavoriteButton = ({
       style={[styles.container, { paddingBottom: SPACING.xl + insets.bottom }]}
     >
       <TouchableOpacity
+        testID="meal-detail-favorite-button"
         style={styles.button}
         onPress={onPress}
         activeOpacity={ACTIVE_OPACITY}
