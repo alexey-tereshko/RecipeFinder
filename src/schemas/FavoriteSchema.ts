@@ -4,6 +4,7 @@ export class FavoriteSchema extends Realm.Object<FavoriteSchema> {
   id!: number;
   name!: string;
   image!: string;
+  cuisine?: string;
   addedAt!: Date;
 
   static schema: Realm.ObjectSchema = {
@@ -13,6 +14,7 @@ export class FavoriteSchema extends Realm.Object<FavoriteSchema> {
       id: 'int',
       name: 'string',
       image: 'string',
+      cuisine: 'string?',
       addedAt: 'date',
     },
   };

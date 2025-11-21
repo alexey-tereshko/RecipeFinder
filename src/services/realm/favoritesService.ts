@@ -11,6 +11,7 @@ export const favoritesService = {
       id: fav.id,
       name: fav.name,
       image: fav.image,
+      cuisine: fav.cuisine || undefined,
     }));
   },
 
@@ -27,6 +28,7 @@ export const favoritesService = {
         id: recipe.id,
         name: recipe.name,
         image: recipe.image,
+        cuisine: recipe.cuisine || '',
         addedAt: new Date(),
       });
     });

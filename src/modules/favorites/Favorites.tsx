@@ -4,7 +4,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { useFavorites } from '@/hooks/favorites/useFavorites';
-import { RecipesList } from '@/modules/home/components/RecipesList';
+import { FavoritesList } from './components/FavoritesList';
 import { ErrorView } from '@/modules/home/components/ErrorView';
 import { LoadingIndicator } from '@/modules/home/components/LoadingIndicator';
 import { COLORS } from '@/constants/uiConstants';
@@ -39,7 +39,7 @@ export const Favorites = () => {
 
   return (
     <View style={styles.container}>
-      <RecipesList recipes={favorites} onRecipePress={handleRecipePress} />
+      <FavoritesList recipes={favorites} onRecipePress={handleRecipePress} />
     </View>
   );
 };

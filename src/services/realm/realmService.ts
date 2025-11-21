@@ -11,7 +11,7 @@ export const getRealm = async (): Promise<Realm> => {
 
   realmInstance = await Realm.open({
     schema: [RecipeSchema, FavoriteSchema],
-    schemaVersion: 1,
+    schemaVersion: 2,
   });
 
   return realmInstance;
