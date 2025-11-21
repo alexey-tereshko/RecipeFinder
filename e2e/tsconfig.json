@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["jest", "detox/globals.d.ts", "node"]
+  },
+  "include": ["**/*.ts", "**/*.tsx", "global.d.ts"]
+}
+
