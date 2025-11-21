@@ -35,7 +35,7 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
         setTotal(response.total);
       } catch (err) {
         setError(
-          err instanceof Error ? err : new Error('Failed to search recipes')
+          err instanceof Error ? err : new Error('Failed to search recipes'),
         );
         setRecipes([]);
         setTotal(0);
@@ -43,7 +43,7 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
         setIsLoading(false);
       }
     },
-    [params?.limit, params?.skip]
+    [params?.limit, params?.skip],
   );
 
   const search = useCallback(
@@ -61,9 +61,9 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
 
       debounceTimerRef.current = setTimeout(() => {
         performSearch(query, skipOverride);
-      }, 1000);
+      }, 500);
     },
-    [performSearch]
+    [performSearch],
   );
 
   useEffect(() => {
@@ -82,4 +82,3 @@ export const useSearchRecipes = (params?: UseSearchRecipesParams) => {
     search,
   };
 };
-
