@@ -51,8 +51,8 @@ npm run build:e2e:ios
 npm run test:e2e:ios
 
 # E2E tests (Android)
-npm run test:e2e:android
 npm run build:e2e:android
+npm run test:e2e:android
 
 # Linting
 npm run lint

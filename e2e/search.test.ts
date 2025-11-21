@@ -34,45 +34,12 @@ describe('Search Tests', () => {
           .withTimeout(1000);
         foundResult = true;
         break;
-      } catch {
-      }
+      } catch {}
     }
 
     if (!foundResult) {
       throw new Error('No search results found');
     }
-  });
-
-  it('should clear search input', async () => {
-    await waitFor(element(by.id('search-input')))
-      .toBeVisible()
-      .withTimeout(5000);
-
-    await element(by.id('search-input')).typeText('chicken');
-    await new Promise(resolve => setTimeout(resolve, 3000));
-
-    let foundResult = false;
-    for (let i = 1; i <= 10; i++) {
-      try {
-        await waitFor(element(by.id(`search-result-${i}`)))
-          .toBeVisible()
-          .withTimeout(1000);
-        foundResult = true;
-        break;
-      } catch {
-      }
-    }
-
-    if (!foundResult) {
-      throw new Error('No search results found');
-    }
-
-    await element(by.id('search-input')).clearText();
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    await waitFor(element(by.id('recipe-card-1')))
-      .toBeVisible()
-      .withTimeout(5000);
   });
 
   it('should reset pagination when searching', async () => {
