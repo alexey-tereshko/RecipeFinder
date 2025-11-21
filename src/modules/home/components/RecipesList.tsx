@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { RecipeCard } from '@/components/recipe';
 import type { RecipeListItem } from '@/types/recipe';
 import { SPACING } from '@/constants/uiConstants';
@@ -13,6 +14,7 @@ interface RecipesListProps {
 
 export const RecipesList = ({ recipes, onRecipePress, onFavoritePress, isFavorite }: RecipesListProps) => {
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const numColumns = 2;
   const cardWidth = (width - SPACING.lg * 3) / numColumns;
 
@@ -30,7 +32,7 @@ export const RecipesList = ({ recipes, onRecipePress, onFavoritePress, isFavorit
           width={cardWidth}
         />
       )}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={[styles.content, { paddingBottom: SPACING.xl + insets.bottom }]}
       showsVerticalScrollIndicator={false}
       columnWrapperStyle={styles.row}
     />

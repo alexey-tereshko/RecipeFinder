@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, SHADOW } from '@/constants/uiConstants';
 
 interface ErrorViewProps {
@@ -8,8 +9,9 @@ interface ErrorViewProps {
 }
 
 export const ErrorView = ({ message, onRetry }: ErrorViewProps) => {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingBottom: SPACING.xxl + insets.bottom }]}>
       <Text style={styles.message}>{message}</Text>
       {onRetry && (
         <TouchableOpacity style={styles.button} onPress={onRetry}>

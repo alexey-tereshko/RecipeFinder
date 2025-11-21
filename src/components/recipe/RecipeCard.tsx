@@ -50,9 +50,9 @@ export const RecipeCard = ({ recipe, onPress, onFavoritePress, isFavorite = fals
             />
           </TouchableOpacity>
         )}
-        {recipe.category && (
+        {recipe.cuisine && (
           <View style={styles.categoryBadge}>
-            <Text style={styles.categoryText}>{recipe.category}</Text>
+            <Text style={styles.categoryText}>{recipe.cuisine}</Text>
           </View>
         )}
       </View>

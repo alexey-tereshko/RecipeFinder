@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { useRecipe } from '@/hooks/recipes';
@@ -18,6 +19,7 @@ export const MealDetail = ({ route }: Props) => {
   const { recipeId } = route.params;
   const { recipe, isLoading, error, refetch } = useRecipe(recipeId);
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
+  const insets = useSafeAreaInsets();
 
   const handleFavoriteToggle = async () => {
     if (!recipe) return;
@@ -38,7 +40,11 @@ export const MealDetail = ({ route }: Props) => {
   }
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView 
+      style={styles.container} 
+      contentContainerStyle={{ paddingBottom: insets.bottom }}
+      showsVerticalScrollIndicator={false}
+    >
       <RecipeHeader recipe={recipe} />
       {recipe.ingredients && recipe.ingredients.length > 0 && (
         <IngredientsList ingredients={recipe.ingredients} />

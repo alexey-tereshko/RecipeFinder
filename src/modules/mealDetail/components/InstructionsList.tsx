@@ -15,9 +15,7 @@ export const InstructionsList = ({ instructions }: InstructionsListProps) => {
         keyExtractor={(item, index) => `${item}-${index}`}
         renderItem={({ item, index }) => (
           <View style={styles.item}>
-            <View style={styles.stepNumber}>
-              <Text style={styles.stepText}>{index + 1}</Text>
-            </View>
+            <Text style={styles.stepNumber}>{index + 1}.</Text>
             <Text style={styles.text}>{item}</Text>
           </View>
         )}
@@ -46,21 +44,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   stepNumber: {
-    width: 36,
-    height: 36,
-    borderRadius: BORDER_RADIUS.round,
-    backgroundColor: COLORS.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: SPACING.lg,
-    minWidth: 36,
-  },
-  stepText: {
     fontFamily: FONT_FAMILY.regular,
-    fontSize: FONT_SIZE.lg,
+    fontSize: FONT_SIZE.md,
     fontWeight: FONT_WEIGHT.bold,
-    color: COLORS.white,
-    lineHeight: LINE_HEIGHT.lg,
+    color: COLORS.primary,
+    marginRight: SPACING.md,
+    lineHeight: LINE_HEIGHT.md,
   },
   text: {
     flex: 1,

@@ -1,10 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type { MainTabParamList } from './types';
 import { HomeScreen } from '@/app/Home';
 import { FavoritesScreen } from '@/app/Favorites';
-import { COLORS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY } from '@/constants/uiConstants';
+import {
+  COLORS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  FONT_FAMILY,
+} from '@/constants/uiConstants';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -17,6 +23,7 @@ const FavoritesIcon = ({ color, size }: { color: string; size: number }) => (
 );
 
 export const MainTabs = () => {
+  const insets = useSafeAreaInsets();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -26,8 +33,8 @@ export const MainTabs = () => {
           backgroundColor: COLORS.background.primary,
           borderTopWidth: 1,
           borderTopColor: COLORS.border.light,
-          height: 60,
-          paddingBottom: 8,
+          height: 60 + insets.bottom,
+          paddingBottom: insets.bottom,
           paddingTop: 8,
         },
         tabBarLabelStyle: {

@@ -11,7 +11,7 @@ export const recipeCacheService = {
         id: recipe.id,
         name: recipe.name,
         image: recipe.image,
-        category: recipe.category || '',
+        category: recipe.cuisine || '',
         ingredients: recipe.ingredients || [],
         instructions: recipe.instructions || [],
         cachedAt: new Date(),
@@ -35,7 +35,7 @@ export const recipeCacheService = {
       id: recipe.id,
       name: recipe.name,
       image: recipe.image,
-      category: recipe.category || undefined,
+      cuisine: recipe.category || undefined,
       tags: recipe.tags?.length ? Array.from(recipe.tags) : undefined,
       ingredients: recipe.ingredients?.length ? Array.from(recipe.ingredients) : undefined,
       instructions: recipe.instructions?.length ? Array.from(recipe.instructions) : undefined,
@@ -50,7 +50,7 @@ export const recipeCacheService = {
         if (existing) {
           existing.name = recipe.name;
           existing.image = recipe.image;
-          existing.category = recipe.category || '';
+          existing.category = recipe.cuisine || '';
           if (recipe.tags) {
             existing.tags.splice(0, existing.tags.length, ...recipe.tags);
           } else {
@@ -62,7 +62,7 @@ export const recipeCacheService = {
             id: recipe.id,
             name: recipe.name,
             image: recipe.image,
-            category: recipe.category || '',
+            category: recipe.cuisine || '',
             tags: recipe.tags || [],
             ingredients: [],
             instructions: [],
@@ -82,7 +82,7 @@ export const recipeCacheService = {
       id: recipe.id,
       name: recipe.name,
       image: recipe.image,
-      category: recipe.category || undefined,
+      cuisine: recipe.category || undefined,
       tags: recipe.tags?.length ? Array.from(recipe.tags) : undefined,
     }));
   },

@@ -1,7 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE, SHADOW, ACTIVE_OPACITY } from '@/constants/uiConstants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, FONT_FAMILY, LINE_HEIGHT, ICON_SIZE, ACTIVE_OPACITY } from '@/constants/uiConstants';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
@@ -9,43 +10,42 @@ interface FavoriteButtonProps {
 }
 
 export const FavoriteButton = ({ isFavorite, onPress }: FavoriteButtonProps) => {
+  const insets = useSafeAreaInsets();
   return (
-    <TouchableOpacity
-      style={[styles.button, isFavorite && styles.buttonActive]}
-      onPress={onPress}
-      activeOpacity={ACTIVE_OPACITY}
-    >
-      <View style={styles.content}>
-        <Ionicons 
-          name={isFavorite ? 'heart' : 'heart-outline'} 
-          size={ICON_SIZE.lg} 
-          color={isFavorite ? COLORS.white : COLORS.primary} 
-          style={styles.icon}
-        />
-        <Text style={[styles.text, isFavorite && styles.textActive]}>
-          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-        </Text>
-      </View>
-    </TouchableOpacity>
+    <View style={[styles.container, { paddingBottom: SPACING.xl + insets.bottom }]}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={onPress}
+        activeOpacity={ACTIVE_OPACITY}
+      >
+        <View style={styles.content}>
+          <Ionicons 
+            name="heart-outline" 
+            size={ICON_SIZE.md} 
+            color={COLORS.white} 
+            style={styles.icon}
+          />
+          <Text style={styles.text}>
+            {isFavorite ? 'Remove from Favourites' : 'Add to Favourites'}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: SPACING.lg,
+    paddingTop: SPACING.lg,
+  },
   button: {
-    backgroundColor: COLORS.white,
-    borderWidth: 2,
-    borderColor: COLORS.primary,
+    backgroundColor: COLORS.primary,
     borderRadius: BORDER_RADIUS.lg,
     paddingVertical: SPACING.lg,
-    paddingHorizontal: SPACING.xxl,
+    paddingHorizontal: SPACING.lg,
     alignItems: 'center',
-    marginHorizontal: SPACING.lg,
-    marginVertical: SPACING.xl,
-    ...SHADOW.small,
-  },
-  buttonActive: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    width: '100%',
   },
   content: {
     flexDirection: 'row',
@@ -59,11 +59,8 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY.regular,
     fontSize: FONT_SIZE.lg,
     fontWeight: FONT_WEIGHT.semibold,
-    color: COLORS.primary,
+    color: COLORS.text.primary,
     lineHeight: LINE_HEIGHT.lg,
-  },
-  textActive: {
-    color: COLORS.white,
   },
 });
 
