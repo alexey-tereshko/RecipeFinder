@@ -1,5 +1,5 @@
 import { getRealm } from './realmService';
-import { FavoriteSchema } from '@/schemas';
+import { FavoriteSchema } from '@/schemas/FavoriteSchema';
 import type { RecipeListItem } from '@/types/recipe';
 
 export const favoritesService = {

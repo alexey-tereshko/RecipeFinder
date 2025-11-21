@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, StyleSheet, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { RecipeCard } from '@/components/recipe';
+import { RecipeCard } from '@/components/recipe/RecipeCard';
 import type { RecipeListItem } from '@/types/recipe';
 import { SPACING } from '@/constants/uiConstants';
 

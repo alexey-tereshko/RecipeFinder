@@ -1,6 +1,6 @@
 import Realm from 'realm';
 import { getRealm } from './realmService';
-import { RecipeSchema } from '@/schemas';
+import { RecipeSchema } from '@/schemas/RecipeSchema';
 import type { Recipe, RecipeListItem } from '@/types/recipe';
 
 export const recipeCacheService = {

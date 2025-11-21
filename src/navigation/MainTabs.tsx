@@ -59,6 +59,7 @@ export const MainTabs = () => {
         options={{
           title: 'Home',
           tabBarIcon: HomeIcon,
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -67,6 +68,7 @@ export const MainTabs = () => {
         options={{
           title: 'Favorites',
           tabBarIcon: FavoritesIcon,
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

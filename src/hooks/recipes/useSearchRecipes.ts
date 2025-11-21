@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { apiClient } from '@/api';
+import { apiClient } from '@/api/apiClient';
 import type { RecipeListItem, RecipesResponse } from '@/types/recipe';
 
 interface UseSearchRecipesParams {

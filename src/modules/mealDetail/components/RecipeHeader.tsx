@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { RecipeImage } from '@/components/recipe';
+import { RecipeImage } from '@/components/recipe/RecipeImage';
 import type { Recipe } from '@/types/recipe';
 import {
   COLORS,

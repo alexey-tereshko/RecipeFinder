@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useRecipes } from '@/hooks/recipes';
-import { useSearchRecipes } from '@/hooks/recipes';
+import { useRecipes } from '@/hooks/recipes/useRecipes';
+import { useSearchRecipes } from '@/hooks/recipes/useSearchRecipes';
 import type { RecipeListItem } from '@/types/recipe';
 
 export const useHomeRecipes = () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { RecipeListItem } from '@/types/recipe';
-import { favoritesService } from '@/services/realm';
+import { favoritesService } from '@/services/realm/favoritesService';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<RecipeListItem[]>([]);

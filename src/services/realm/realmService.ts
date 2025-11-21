@@ -1,5 +1,6 @@
 import Realm from 'realm';
-import { RecipeSchema, FavoriteSchema } from '@/schemas';
+import { RecipeSchema } from '@/schemas/RecipeSchema';
+import { FavoriteSchema } from '@/schemas/FavoriteSchema';
 
 let realmInstance: Realm | null = null;
 

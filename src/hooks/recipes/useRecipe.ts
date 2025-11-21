@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { apiClient } from '@/api';
-import { recipeCacheService } from '@/services/realm';
+import { apiClient } from '@/api/apiClient';
+import { recipeCacheService } from '@/services/realm/recipeCacheService';
 import type { Recipe } from '@/types/recipe';
 
 export const useRecipe = (id: number) => {

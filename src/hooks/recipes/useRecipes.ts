@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { apiClient } from '@/api';
-import { recipeCacheService } from '@/services/realm';
+import { apiClient } from '@/api/apiClient';
+import { recipeCacheService } from '@/services/realm/recipeCacheService';
 import type { RecipeListItem, RecipesResponse } from '@/types/recipe';
 
 interface UseRecipesParams {
